@@ -1,1 +1,20 @@
 <app-carousel />
+
+<button (click)="drawer.toggle()">Abrir Drawer</button>
+
+<app-drawer
+  #drawer
+  position="right"
+  width="400px"
+  [dismissible]="true"
+  [showCloseButton]="true"
+>
+  <ng-template #header>
+    <h2>Custom Header</h2>
+  </ng-template>
+
+  <div class="content">
+    <p>Conte�do personalizado aqui...</p>
+    <button (click)="drawer.hide()">Fechar</button>
+  </div>
+</app-drawer>

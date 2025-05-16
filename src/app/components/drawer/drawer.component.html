@@ -1,0 +1,37 @@
+<!-- drawer.component.html -->
+<div class="drawer-overlay" *ngIf="isVisible" (click)="dismissible && hide()">
+  <div
+    class="drawer"
+    [class]="position"
+    [@drawerAnimation]="{
+      value: isVisible ? 'visible' : 'void',
+      params: { hiddenTransform: hiddenTransform }
+    }"
+    (click)="$event.stopPropagation()"
+    role="dialog"
+    aria-modal="true"
+    #drawer
+  >
+    <div class="drawer-header">
+      <ng-container *ngIf="headerTemplate; else defaultHeader">
+        <ng-container [ngTemplateOutlet]="headerTemplate"></ng-container>
+      </ng-container>
+    </div>
+
+    <div class="drawer-content" #content>
+      <button
+        *ngIf="showCloseButton"
+        class="close-btn"
+        (click)="hide()"
+        aria-label="Close drawer"
+      >
+        &times;
+      </button>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
+
+<ng-template #defaultHeader>
+  <h2 class="default-header">Drawer Header</h2>
+</ng-template>
